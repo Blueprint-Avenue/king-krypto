@@ -15,8 +15,8 @@ export const COLORS = {
 	lightGray2: "#212125",
 	lightGray3: "#757575",
 	transparentWhite: "rgba(255, 255, 255, 0.2)",
-	transparentBlack: "rgba(0, 0, 0, 0.8)",
-	transparentBlack1: "rgba(0, 0, 0, 0.4)",
+	transparentPrimary: "rgba(255,132, 109, 1.0)",
+	transparentSecondary: "rgba(111, 229, 215,1.0)",
 };
 export const SIZES = {
 	// global sizes
