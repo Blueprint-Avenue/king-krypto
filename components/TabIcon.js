@@ -44,7 +44,7 @@ export default function TabIcon({ focused, icon, iconStyle, label, isTrade }) {
 				<Text
 					style={{
 						color: focused ? COLORS.secondary : COLORS.white,
-						...FONTS.h4,
+						// ...FONTS.h4,
 					}}
 				>
 					{label}

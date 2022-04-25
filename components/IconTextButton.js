@@ -33,7 +33,7 @@ export default function IconTextButton({
 			<Text
 				style={{
 					marginLeft: SIZES.base,
-					...FONTS.h3,
+					// ...FONTS.h3,
 					color: COLORS.secondary,
 				}}
 			>
