@@ -1,5 +1,5 @@
-import React, {useCallback} from "react";
-import {View, Text} from "react-native";
+import React, {useCallback, useState} from "react";
+import {View, Text, TouchableOpacity, FlatList, Image} from "react-native";
 import {MainLayout} from "./Main";
 import {connect} from "react-redux";
 import {getHoldings, getCoinMarket} from "../stores/market/marketActions";
@@ -8,6 +8,8 @@ import {dummyData, SIZES, COLORS, FONTS, icons} from "../constants";
 import {BalanceInfo, IconTextButton, Chart} from "../components";
 
 const Home = ({getHoldings, getCoinMarket, myHoldings, coins}) => {
+	const [selectedCoin, setSelectedCoin] = useState(null);
+
 	useFocusEffect(
 		// triggered everytime the homescreen is being focused
 		useCallback(() => {
@@ -93,10 +95,133 @@ const Home = ({getHoldings, getCoinMarket, myHoldings, coins}) => {
 					containerStyle={{
 						marginTop: SIZES.padding * 2,
 					}}
-					chartPrices={coins[0]?.sparkline_in_7d?.price}
+					chartPrices={
+						selectedCoin
+							? selectedCoin?.sparkline_in_7d?.price
+							: coins[0]?.sparkline_in_7d?.price
+					}
 				/>
-
 				{/* Top Crypto Section */}
+				<FlatList
+					data={coins}
+					keyExtractor={(item) => item.id}
+					contentContainerStyle={{
+						marginTop: 30,
+						paddingHorizontal: SIZES.padding,
+					}}
+					ListHeaderComponent={
+						<View
+							style={{
+								marginBottom: SIZES.radius,
+							}}
+						>
+							<Text
+								style={{
+									color: COLORS.white,
+									...FONTS.h3,
+									fontSize: 18,
+								}}
+							>
+								Top Cryptocurrency
+							</Text>
+						</View>
+					}
+					renderItem={({item}) => {
+						let priceColor =
+							item.price_change_percentage_7d_in_currency == 0
+								? COLORS.black2
+								: item.price_change_percentage_7d_in_currency > 0
+								? COLORS.Green
+								: COLORS.red;
+						return (
+							<TouchableOpacity
+								style={{
+									height: 55,
+									flexDirection: "row",
+									alignItems: "center",
+									justifyContent: "center",
+								}}
+								onPress={() => setSelectedCoin(item)}
+							>
+								{/* Logo */}
+								<View
+									style={{
+										width: 35,
+									}}
+								>
+									<Image
+										source={{uri: item.image}}
+										style={{
+											height: 20,
+											width: 20,
+										}}
+									/>
+								</View>
+								{/* Name */}
+								<View
+									style={{
+										flex: 1,
+									}}
+								>
+									<Text style={{color: COLORS.white, ...FONTS.h3}}>
+										{item.name}
+									</Text>
+								</View>
+								{/* Figures */}
+								<View
+									style={{
+										flexDirection: "row",
+										alignItems: "center",
+										justifyContent: "flex-end",
+									}}
+								>
+									<Text
+										style={{
+											textAlign: "right",
+											color: COLORS.white,
+											...FONTS.h4,
+										}}
+									>
+										$ {item.current_price}
+									</Text>
+									<View>
+										{item.price_change_percentage_7d_in_currency != 0 && (
+											<Image
+												source={icons.upArrow}
+												style={{
+													height: 10,
+													width: 10,
+													tintColor: priceColor,
+													transform:
+														item.price_change_percentage_7d_in_currency > 0
+															? [{rotate: "45deg"}]
+															: [{rotate: "125deg"}],
+												}}
+											/>
+										)}
+										<Text
+											style={{
+												marginLeft: 5,
+												color: priceColor,
+												...FONTS.body5,
+												lineHeight: 15,
+											}}
+										>
+											{item.price_change_percentage_7d_in_currency.toFixed(2)}%
+										</Text>
+									</View>
+								</View>
+							</TouchableOpacity>
+						);
+					}}
+					ListFooterComponent={
+						<View
+							style={{
+								marginBottom: 50,
+							}}
+						/>
+					}
+				/>
 			</View>
 		</MainLayout>
 	);
