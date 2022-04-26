@@ -1,8 +1,8 @@
-import { View, Text, Image } from "react-native";
+import {View, Text, Image} from "react-native";
 import React from "react";
-import { FONTS, COLORS } from "../constants";
+import {FONTS, COLORS} from "../constants";
 
-export default function TabIcon({ focused, icon, iconStyle, label, isTrade }) {
+export default function TabIcon({focused, icon, iconStyle, label, isTrade}) {
 	if (isTrade) {
 		return (
 			<View
@@ -25,12 +25,12 @@ export default function TabIcon({ focused, icon, iconStyle, label, isTrade }) {
 						...iconStyle,
 					}}
 				/>
-				<Text style={{ color: COLORS.white, ...FONTS.h4 }}>{label}</Text>
+				<Text style={{color: COLORS.white, ...FONTS.h4}}>{label}</Text>
 			</View>
 		);
 	} else {
 		return (
-			<View style={{ alignItems: "center", justifyContent: "center" }}>
+			<View style={{alignItems: "center", justifyContent: "center"}}>
 				<Image
 					source={icon}
 					resizeMode="contain"
@@ -44,7 +44,7 @@ export default function TabIcon({ focused, icon, iconStyle, label, isTrade }) {
 				<Text
 					style={{
 						color: focused ? COLORS.secondary : COLORS.white,
-						// ...FONTS.h4,
+						...FONTS.h4,
 					}}
 				>
 					{label}
