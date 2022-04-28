@@ -8,7 +8,7 @@ import {BalanceInfo} from "../components";
 import {IconTextButton} from "../components";
 import {LineChart} from "react-native-wagmi-charts";
 
-export default function Home() {
+export default function Home({navigation}) {
 	const screenWidth = Dimensions.get("window").width;
 
 	const data = [
