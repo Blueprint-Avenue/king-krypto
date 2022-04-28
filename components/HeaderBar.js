@@ -8,10 +8,11 @@ const HeaderBar = ({title}) => {
 		<View
 			style={{
 				paddingHorizontal: SIZES.radius,
+				marginTop: 40,
 				justifyContent: "flex-end",
 			}}
 		>
-			<Text style={{color: COLORS.white, ...FONTS.largeTitle}}>{title}</Text>
+			<Text style={{color: COLORS.white, fontSize: 40}}>{title}</Text>
 		</View>
 	);
 };
