@@ -1,15 +1,16 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { COLORS, icons } from "../constants";
-import { Home, Portfolio, Market, Profile } from "../screens/Main";
-import { TabIcon } from "../components";
-import { connect } from "react-redux";
-import { setTradeModalVisibility } from "../stores/tab/tabActions";
+import {TouchableOpacity} from "react-native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {COLORS, icons} from "../constants";
+import {Home, Portfolio, Market, Profile} from "../screens/Main";
+import {TabIcon} from "../components";
+import {connect} from "react-redux";
+import {setTradeModalVisibility} from "../stores/tab/tabActions";
+import {isIphoneX} from "react-native-iphone-x-helper";
 
 const Tab = createBottomTabNavigator();
 
-const TabBarCustomButton = ({ children, onPress }) => {
+const TabBarCustomButton = ({children, onPress}) => {
 	return (
 		<TouchableOpacity
 			style={{
@@ -24,7 +25,7 @@ const TabBarCustomButton = ({ children, onPress }) => {
 	);
 };
 
-const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
+const Tabs = ({setTradeModalVisibility, isTradeModalVisible}) => {
 	function tradeTabButtonOnClickHandler() {
 		setTradeModalVisibility(!isTradeModalVisible);
 	}
@@ -34,7 +35,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 			tabBarOptions={{
 				showLabel: false,
 				style: {
-					height: 140,
+					height: isIphoneX() ? 140 : 80,
 					backgroundColor: COLORS.primary,
 					borderTopColor: "transparent",
 				},
@@ -44,7 +45,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 				name="Home"
 				component={Home}
 				options={{
-					tabBarIcon: ({ focused }) => {
+					tabBarIcon: ({focused}) => {
 						if (!isTradeModalVisible) {
 							return (
 								<TabIcon focused={focused} icon={icons.home} label="Home" />
@@ -65,7 +66,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 				name="Portfolio"
 				component={Portfolio}
 				options={{
-					tabBarIcon: ({ focused }) => {
+					tabBarIcon: ({focused}) => {
 						if (!isTradeModalVisible) {
 							return (
 								<TabIcon
@@ -90,7 +91,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 				name="Trade"
 				component={Home}
 				options={{
-					tabBarIcon: ({ focused }) => {
+					tabBarIcon: ({focused}) => {
 						return (
 							<TabIcon
 								focused={focused}
@@ -120,7 +121,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 				name="Market"
 				component={Market}
 				options={{
-					tabBarIcon: ({ focused }) => {
+					tabBarIcon: ({focused}) => {
 						if (!isTradeModalVisible) {
 							return (
 								<TabIcon focused={focused} icon={icons.market} label="Market" />
@@ -141,7 +142,7 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
 				name="Profile"
 				component={Profile}
 				options={{
-					tabBarIcon: ({ focused }) => {
+					tabBarIcon: ({focused}) => {
 						if (!isTradeModalVisible) {
 							return (
 								<TabIcon

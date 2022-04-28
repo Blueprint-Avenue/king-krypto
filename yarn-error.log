@@ -1,0 +1,76 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.17_2/libexec/bin/yarn.js
+
+PATH: 
+  /Users/mac/Library/Android/sdk/platform-tools:/Users/mac/.rvm/gems/ruby-2.7.4/bin:/Users/mac/.rvm/gems/ruby-2.7.4@global/bin:/Users/mac/.rvm/rubies/ruby-2.7.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/mac/Library/Android/sdk/platform-tools:/Users/mac/.rvm/gems/ruby-2.7.4/bin:/Users/mac/.rvm/gems/ruby-2.7.4@global/bin:/Users/mac/.rvm/rubies/ruby-2.7.4/bin:/Users/mac/.rvm/bin:/Users/mac/.rvm/bin:/usr/local/bin:/usr/local/bin:/usr/local/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.13.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: ENOSPC: no space left on device, copyfile '/Users/mac/Library/Caches/Yarn/v6/npm-lodash-4.17.21-679591c564c3bffaae8454cf0b3df370c3d6911c-integrity/node_modules/lodash/fill.js' -> '/Users/mac/Desktop/king-krypto/node_modules/lodash/fill.js'
+
+npm manifest: 
+  {
+    "name": "king-krypto",
+    "version": "1.0.0",
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web",
+      "eject": "expo eject"
+    },
+    "dependencies": {
+      "@react-native-community/masked-view": "^0.1.11",
+      "@react-navigation/bottom-tabs": "^5.11.15",
+      "@react-navigation/native": "^5.9.8",
+      "@react-navigation/stack": "^5.14.9",
+      "axios": "^0.26.1",
+      "expo": "^44.0.6",
+      "expo-status-bar": "~1.2.0",
+      "moment": "^2.29.3",
+      "react": "17.0.1",
+      "react-dom": "17.0.1",
+      "react-native": "0.64.3",
+      "react-native-chart-kit": "^6.12.0",
+      "react-native-gesture-handler": "~2.1.0",
+      "react-native-reanimated": "2.3.1",
+      "react-native-safe-area-context": "3.3.2",
+      "react-native-screens": "~3.10.1",
+      "react-native-svg": "^12.3.0",
+      "react-native-web": "0.17.1",
+      "react-redux": "^8.0.1",
+      "redux": "^4.2.0",
+      "redux-thunk": "^2.4.1"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.12.9",
+      "@babel/runtime": "^7.12.5",
+      "@react-native-community/eslint-config": "^2.0.0",
+      "babel-jest": "^26.6.3",
+      "eslint": "7.14.0",
+      "jest": "^26.6.3",
+      "metro-react-native-babel-preset": "^0.64.0",
+      "react-test-renderer": "17.0.1"
+    },
+    "private": true,
+    "rnpm": {
+      "assets": [
+        "./assets/fonts/"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

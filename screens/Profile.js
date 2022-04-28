@@ -1,6 +1,13 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { MainLayout } from "./Main";
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	ScrollView,
+	Image,
+	Switch,
+} from "react-native";
+import {MainLayout} from "./Main";
 
 const Profile = () => {
 	return (
