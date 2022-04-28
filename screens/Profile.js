@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
 	View,
 	Text,
@@ -11,21 +11,28 @@ import {MainLayout} from "./Main";
 import HeaderBar from "../components/HeaderBar";
 import {FONTS, COLORS, SIZES, dummyData, icons} from "../constants";
 import SectionTitle from "../components/SectionTitle";
+import Setting from "../components/Settings";
 
 const Profile = () => {
+	const [faceId, setFaceId] = useState(true);
+
 	return (
 		<MainLayout>
 			<View
 				style={{
 					flex: 1,
-					paddingHorizontal: SIZES.padding,
+					paddingHorizontal: 15,
 					backgroundColor: COLORS.secondary,
 				}}
 			>
 				{/* Header */}
 				<HeaderBar title="Profile" />
 				{/* Details */}
-				<ScrollView>
+				<ScrollView
+					style={{
+						marginTop: 40,
+					}}
+				>
 					{/* Email and User Id */}
 					<View
 						style={{
@@ -81,11 +88,65 @@ const Profile = () => {
 					{/* App Section */}
 					<SectionTitle title="APP" />
 
+					<Setting
+						title="Launch Screen"
+						value="Home"
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
+
+					<Setting
+						title="Appearance"
+						value="Dark"
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
+
 					{/* Account Section */}
 					<SectionTitle title="ACCOUNT" />
+					<Setting
+						title="Payment Currency"
+						value="USD"
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
+
+					<Setting
+						title="Language"
+						value="English"
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
 
 					{/* Security Section */}
 					<SectionTitle title="SECURITY" />
+					<Setting
+						title="FaceID"
+						value={faceId}
+						type="switch"
+						onPress={(value) => setFaceId(value)}
+					/>
+
+					<Setting
+						title="Password Settings"
+						value=""
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
+
+					<Setting
+						title="Change Password"
+						value=""
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
+
+					<Setting
+						title="2-Factor Authentication"
+						value=""
+						type="button"
+						onPress={() => console.log("Pressed")}
+					/>
 				</ScrollView>
 			</View>
 		</MainLayout>

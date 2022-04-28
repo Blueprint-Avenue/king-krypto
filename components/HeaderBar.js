@@ -8,7 +8,7 @@ const HeaderBar = ({title}) => {
 		<View
 			style={{
 				paddingHorizontal: SIZES.radius,
-				marginTop: 40,
+				marginTop: 60,
 				justifyContent: "flex-end",
 			}}
 		>

@@ -9,7 +9,14 @@ export default function SectionTitle({title}) {
 				marginTop: SIZES.padding,
 			}}
 		>
-			<Text style={{color: COLORS.lightGray3, ...FONTS.h4}}>{title}</Text>
+			<Text
+				style={{
+					color: COLORS.lightGray3,
+					...FONTS.h4,
+				}}
+			>
+				{title}
+			</Text>
 		</View>
 	);
 }
