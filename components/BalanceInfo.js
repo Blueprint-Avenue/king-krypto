@@ -2,12 +2,7 @@ import {View, Text, Image} from "react-native";
 import React from "react";
 import {SIZES, COLORS, FONTS, icons} from "../constants";
 
-export default function BalanceInfo({
-	title,
-	displayAmount,
-	changePct,
-	containerStyle,
-}) {
+export default function BalanceInfo({title, containerStyle}) {
 	return (
 		<View style={{...containerStyle}}>
 			{/* Title */}
@@ -42,7 +37,7 @@ export default function BalanceInfo({
 						marginLeft: SIZES.base,
 					}}
 				>
-					{displayAmount.toLocaleString()}
+					15,000,000
 				</Text>
 				<Text
 					style={{
@@ -60,33 +55,25 @@ export default function BalanceInfo({
 					alignItems: "flex-end",
 				}}
 			>
-				{changePct != 0 && (
-					<Image
-						source={icons.upArrow}
-						style={{
-							width: 10,
-							height: 10,
-							alignItems: "center",
-							tintColor: changePct > 0 ? COLORS.Green : COLORS.red,
-							transform:
-								changePct > 0 ? [{rotate: "45deg"}] : [{rotate: "125deg"}],
-						}}
-					/>
-				)}
+				<Image
+					source={icons.upArrow}
+					style={{
+						width: 10,
+						height: 10,
+						alignItems: "center",
+						tintColor: COLORS.Green,
+					}}
+				/>
+
 				<Text
 					style={{
 						marginLeft: SIZES.base,
 						alignSelf: "flex-end",
-						color:
-							changePct === 0
-								? COLORS.black2
-								: changePct > 0
-								? COLORS.Green
-								: COLORS.red,
+						color: COLORS.Green,
 						...FONTS.h4,
 					}}
 				>
-					{changePct.toFixed(2)}%
+					1000.00%
 				</Text>
 				<Text
 					style={{

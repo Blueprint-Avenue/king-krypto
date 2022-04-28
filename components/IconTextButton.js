@@ -11,6 +11,7 @@ export default function IconTextButton({label, icon, containerStyle, onPress}) {
 				justifyContent: "center",
 				height: 50,
 				borderRadius: SIZES.radius,
+				borderBottomColor: COLORS.black2,
 				backgroundColor: COLORS.white,
 				...containerStyle,
 			}}
