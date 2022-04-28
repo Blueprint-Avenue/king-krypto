@@ -6,6 +6,7 @@ import {CoinItemStyle} from "./CoinItemStyle";
 
 export default function CoinItem({marketCoin}) {
 	const {
+		id,
 		name,
 		current_price,
 		market_cap_rank,
@@ -38,7 +39,7 @@ export default function CoinItem({marketCoin}) {
 
 	return (
 		<Pressable
-			onPress={() => navigation.navigate("Details")}
+			onPress={() => navigation.navigate("Details", {coinId: id})}
 			style={styles.coinsContainer}
 		>
 			<Image

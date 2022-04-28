@@ -7,6 +7,7 @@ import {AntDesign} from "@expo/vector-icons";
 import {LineChart} from "react-native-wagmi-charts";
 import {useNavigation} from "@react-navigation/native";
 import {Ionicons, FontAwesome5} from "@expo/vector-icons";
+import {useRoute} from "@react-navigation/native";
 
 const CoinDetails = () => {
 	const {
@@ -20,6 +21,14 @@ const CoinDetails = () => {
 
 	const [coinValue, setCoinValue] = useState("1");
 	const [usdValue, setUsdValue] = useState(current_price.usd.toString());
+
+	const route = useRoute();
+
+	const {
+		params: {coinId},
+	} = route;
+
+	console.log(route);
 
 	const navigation = useNavigation();
 	const percentageChangeColor =
