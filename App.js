@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./stores/rootReducer";
 import CoinDetails from "./screens/CoinDetails/CoinDetails";
+import {COLORS} from "./constants";
 
 import Tabs from "./navigation/tabs";
 
@@ -16,11 +17,16 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 const App = () => {
 	return (
 		<Provider store={store}>
-			<NavigationContainer>
+			<NavigationContainer
+				theme={{
+					colors: {
+						background: COLORS.white,
+					},
+				}}
+			>
 				<Stack.Navigator
 					screenOptions={{
 						headerShown: false,
-						headerTintColor: "#AB6D23",
 						...TransitionPresets.ModalPresentationIOS,
 					}}
 					initialRouteName={"MainLayout"}

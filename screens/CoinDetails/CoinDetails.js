@@ -5,8 +5,10 @@ import CoinDetailHeader from "../../components/CoinDetailHeader";
 import styles from "./CDStyle";
 import {AntDesign} from "@expo/vector-icons";
 import {LineChart} from "react-native-wagmi-charts";
+import {useNavigation} from "@react-navigation/native";
+import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 
-const CoinDetails = ({route}) => {
+const CoinDetails = () => {
 	const {
 		image: {small},
 		name,
@@ -19,6 +21,7 @@ const CoinDetails = ({route}) => {
 	const [coinValue, setCoinValue] = useState("1");
 	const [usdValue, setUsdValue] = useState(current_price.usd.toString());
 
+	const navigation = useNavigation();
 	const percentageChangeColor =
 		price_change_percentage_24h < 0 ? "#ea3943" : "#32DBC6";
 
@@ -72,6 +75,12 @@ const CoinDetails = ({route}) => {
 	return (
 		<View style={{paddingHorizontal: 10}}>
 			<LineChart.Provider data={data}>
+				<Ionicons
+					onPress={() => navigation.goBack(null)}
+					name="chevron-back-sharp"
+					size={33}
+					color="#32DBC6"
+				/>
 				<CoinDetailHeader
 					image={small}
 					name={name}

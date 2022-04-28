@@ -6,7 +6,6 @@ import {Home, Portfolio, Market, Profile} from "../screens/Main";
 import {TabIcon} from "../components";
 import {connect} from "react-redux";
 import {setTradeModalVisibility} from "../stores/tab/tabActions";
-import {isIphoneX} from "react-native-iphone-x-helper";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +34,7 @@ const Tabs = ({setTradeModalVisibility, isTradeModalVisible}) => {
 			tabBarOptions={{
 				showLabel: false,
 				style: {
-					height: isIphoneX() ? 140 : 80,
+					height: 140,
 					backgroundColor: COLORS.primary,
 					borderTopColor: "transparent",
 				},
@@ -96,14 +95,6 @@ const Tabs = ({setTradeModalVisibility, isTradeModalVisible}) => {
 							<TabIcon
 								focused={focused}
 								icon={isTradeModalVisible ? icons.close : icons.trade}
-								iconStyle={
-									isTradeModalVisible
-										? {
-												width: 15,
-												height: 15,
-										  }
-										: null
-								}
 								label="Trade"
 								isTrade={true}
 							/>
@@ -166,6 +157,8 @@ const Tabs = ({setTradeModalVisibility, isTradeModalVisible}) => {
 		</Tab.Navigator>
 	);
 };
+
+// export default Tabs;
 
 function mapStateToProps(state) {
 	return {
