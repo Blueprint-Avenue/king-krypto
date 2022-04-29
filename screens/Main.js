@@ -4,4 +4,4 @@ import Market from "./Market";
 import Profile from "./Profile";
 import MainLayout from "./MainLayout";
 
-export { Home, Portfolio, Market, Profile, MainLayout };
+export {Home, Portfolio, Market, Profile, MainLayout};

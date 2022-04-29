@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./stores/rootReducer";
 import CoinDetails from "./screens/CoinDetails/CoinDetails";
 import {COLORS} from "./constants";
-
+import WatchlistProvider from "./Contexts/WatchlistContext";
 import Tabs from "./navigation/tabs";
 import {StatusBar} from "expo-status-bar";
 
@@ -25,17 +25,19 @@ const App = () => {
 					},
 				}}
 			>
-				<StatusBar style="auto" />
-				<Stack.Navigator
-					screenOptions={{
-						headerShown: false,
-						...TransitionPresets.ModalPresentationIOS,
-					}}
-					initialRouteName={"MainLayout"}
-				>
-					<Stack.Screen name="MainLayout" component={Tabs} />
-					<Stack.Screen name="Details" component={CoinDetails} />
-				</Stack.Navigator>
+				<WatchlistProvider>
+					<StatusBar style="auto" />
+					<Stack.Navigator
+						screenOptions={{
+							headerShown: false,
+							...TransitionPresets.ModalPresentationIOS,
+						}}
+						initialRouteName={"MainLayout"}
+					>
+						<Stack.Screen name="MainLayout" component={Tabs} />
+						<Stack.Screen name="Details" component={CoinDetails} />
+					</Stack.Navigator>
+				</WatchlistProvider>
 			</NavigationContainer>
 		</Provider>
 	);

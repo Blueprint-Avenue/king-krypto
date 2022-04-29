@@ -115,7 +115,11 @@ const Tabs = ({setTradeModalVisibility, isTradeModalVisible}) => {
 					tabBarIcon: ({focused}) => {
 						if (!isTradeModalVisible) {
 							return (
-								<TabIcon focused={focused} icon={icons.market} label="Market" />
+								<TabIcon
+									focused={focused}
+									icon={icons.market}
+									label="Watchlist"
+								/>
 							);
 						}
 					},

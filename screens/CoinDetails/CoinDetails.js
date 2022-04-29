@@ -11,7 +11,6 @@ import CoinDetailHeader from "./CoinDetailHeader";
 import styles from "./CDStyle";
 import {AntDesign} from "@expo/vector-icons";
 import {LineChart} from "react-native-wagmi-charts";
-import {useNavigation} from "@react-navigation/native";
 import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 import {useRoute} from "@react-navigation/native";
 import {getDatailedCoinData, getCoinMarketChart} from "../../server/axios";
@@ -48,6 +47,7 @@ const CoinDetails = () => {
 	}
 
 	const {
+		id,
 		image: {small},
 		name,
 		symbol,
@@ -60,8 +60,6 @@ const CoinDetails = () => {
 		price_change_percentage_24h < 0 ? "#ea3943" : "#32DBC6";
 
 	const screenWidth = Dimensions.get("window").width;
-
-	const navigation = useNavigation();
 
 	const data = [
 		{
@@ -111,15 +109,9 @@ const CoinDetails = () => {
 	return (
 		<View style={{paddingHorizontal: 10}}>
 			<LineChart.Provider data={data}>
-				<Ionicons
-					onPress={() => navigation.goBack(null)}
-					name="chevron-back-sharp"
-					size={33}
-					color="#32DBC6"
-				/>
 				<CoinDetailHeader
+					coinId={id}
 					image={small}
-					name={name}
 					symbol={symbol}
 					market_cap_rank={market_cap_rank}
 				/>
