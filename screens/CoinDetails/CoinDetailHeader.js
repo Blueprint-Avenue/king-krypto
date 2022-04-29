@@ -9,21 +9,21 @@ const CoinDetailHeader = (props) => {
 	const {coinId, image, symbol, market_cap_rank} = props;
 	const navigation = useNavigation();
 
-	const {watchlistCoinIds, storeWatchlistCoinId, removeWatchlistCoinId} =
-		useWatchlist();
+	// const {watchlistCoinIds, storeWatchlistCoinId, removeWatchlistCoinId} =
+	// 	useWatchlist();
 
-	console.log(coinId);
-	// To Check if star is marked
-	const checkIfCoinIsWatchlisted = () => {
-		return watchlistCoinIds.some((coinIdValue) => coinIdValue === coinId);
-	};
+	// console.log(coinId);
+	// // To Check if star is marked
+	// const checkIfCoinIsWatchlisted = () => {
+	// 	return watchlistCoinIds.some((coinIdValue) => coinIdValue === coinId);
+	// };
 
-	const handleWatchlistCoin = () => {
-		if (checkIfCoinIsWatchlisted()) {
-			return removeWatchlistCoinId(coinId);
-		}
-		return storeWatchlistCoinId(coinId);
-	};
+	// const handleWatchlistCoin = () => {
+	// 	if (checkIfCoinIsWatchlisted()) {
+	// 		return removeWatchlistCoinId(coinId);
+	// 	}
+	// 	return storeWatchlistCoinId(coinId);
+	// };
 
 	return (
 		<View style={styles.headerContainer}>
@@ -41,10 +41,10 @@ const CoinDetailHeader = (props) => {
 				</View>
 			</View>
 			<FontAwesome
-				name={checkIfCoinIsWatchlisted() ? "star" : "star-o"}
+				name={"star-o"}
 				size={27}
-				color={checkIfCoinIsWatchlisted() ? "#FF502F" : "#32DBC6"}
-				onPress={handleWatchlistCoin}
+				color={"#32DBC6"}
+				// onPress={handleWatchlistCoin}
 			/>
 		</View>
 	);
