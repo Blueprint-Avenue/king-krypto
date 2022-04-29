@@ -10,6 +10,7 @@ export default function BalanceInfo({title, containerStyle}) {
 				style={{
 					color: COLORS.black2,
 					...FONTS.h3,
+					marginTop: 40,
 				}}
 			>
 				{title}

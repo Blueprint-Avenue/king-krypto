@@ -1,40 +1,67 @@
-import {View, Text, Image, Dimensions, TextInput} from "react-native";
+import {
+	View,
+	Text,
+	Image,
+	Dimensions,
+	TextInput,
+	ActivityIndicator,
+} from "react-native";
 import React, {useState, useEffect} from "react";
-import cryptoCoin from "../../assets/data/crypto.json";
-import CoinDetailHeader from "../../components/CoinDetailHeader";
+import CoinDetailHeader from "./CoinDetailHeader";
 import styles from "./CDStyle";
 import {AntDesign} from "@expo/vector-icons";
 import {LineChart} from "react-native-wagmi-charts";
 import {useNavigation} from "@react-navigation/native";
 import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 import {useRoute} from "@react-navigation/native";
+import {getDatailedCoinData, getCoinMarketChart} from "../../server/axios";
 
 const CoinDetails = () => {
+	const [coin, setCoin] = useState(null);
+	const [coinMarketData, setCoinMarketData] = useState(null);
+	const route = useRoute();
+	const {
+		params: {coinId},
+	} = route;
+	console.log(route);
+
+	const [loading, setLoading] = useState(false);
+	const [coinValue, setCoinValue] = useState("1");
+	const [usdValue, setUsdValue] = useState("");
+
+	const fetchCoinData = async () => {
+		setLoading(true);
+		const fetchedCoinData = await getDatailedCoinData(coinId);
+		const fetchedCoinMarketDate = await getCoinMarketChart(coinId);
+		setCoin(fetchedCoinData);
+		setCoinMarketData(fetchedCoinMarketDate);
+		setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
+		setLoading(false);
+	};
+
+	useEffect(() => {
+		fetchCoinData();
+	}, []);
+
+	if (loading || !coin || !coinMarketData) {
+		return <ActivityIndicator size="large" />;
+	}
+
 	const {
 		image: {small},
 		name,
 		symbol,
-
-		prices,
 		market_data: {market_cap_rank, current_price, price_change_percentage_24h},
-	} = cryptoCoin;
+	} = coin;
 
-	const [coinValue, setCoinValue] = useState("1");
-	const [usdValue, setUsdValue] = useState(current_price.usd.toString());
+	const {prices} = coinMarketData;
 
-	const route = useRoute();
-
-	const {
-		params: {coinId},
-	} = route;
-
-	console.log(route);
-
-	const navigation = useNavigation();
 	const percentageChangeColor =
 		price_change_percentage_24h < 0 ? "#ea3943" : "#32DBC6";
 
 	const screenWidth = Dimensions.get("window").width;
+
+	const navigation = useNavigation();
 
 	const data = [
 		{

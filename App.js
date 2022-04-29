@@ -9,6 +9,7 @@ import CoinDetails from "./screens/CoinDetails/CoinDetails";
 import {COLORS} from "./constants";
 
 import Tabs from "./navigation/tabs";
+import {StatusBar} from "expo-status-bar";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
 					},
 				}}
 			>
+				<StatusBar style="auto" />
 				<Stack.Navigator
 					screenOptions={{
 						headerShown: false,

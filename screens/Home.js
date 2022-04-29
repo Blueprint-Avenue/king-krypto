@@ -1,5 +1,12 @@
-import {View, Text, FlatList, StyleSheet, Dimensions} from "react-native";
-import React from "react";
+import {
+	View,
+	Text,
+	FlatList,
+	StyleSheet,
+	Dimensions,
+	RefreshControl,
+} from "react-native";
+import React, {useEffect, useState} from "react";
 import {MainLayout} from "./Main";
 import CoinItem from "../components/CoinItem/CoinItem";
 import cryptocurrencies from "../assets/data/cryptocurrencies.json";
@@ -7,10 +14,37 @@ import {SIZES, COLORS, FONTS, dummyData, icons} from "../constants";
 import {BalanceInfo} from "../components";
 import {IconTextButton} from "../components";
 import {LineChart} from "react-native-wagmi-charts";
+import {getMarketData} from "../server/axios";
 
 export default function Home({navigation}) {
-	const screenWidth = Dimensions.get("window").width;
+	const [coins, setCoins] = useState([]);
+	const [loading, setLoading] = useState(false);
 
+	const fetchCoins = async (pageNumber) => {
+		if (loading) {
+			return;
+		}
+		setLoading(true);
+		const coinsData = await getMarketData(pageNumber);
+		setCoins((existingCoins) => [...existingCoins, ...coinsData]);
+		setLoading(false);
+	};
+
+	const refetchCoins = async () => {
+		if (loading) {
+			return;
+		}
+		setLoading(true);
+		const coinsData = await getMarketData();
+		setCoins(coinsData);
+		setLoading(false);
+	};
+
+	useEffect(() => {
+		fetchCoins();
+	}, []);
+
+	const screenWidth = Dimensions.get("window").width;
 	const data = [
 		{
 			timestamp: 1625945400000,
@@ -78,7 +112,7 @@ export default function Home({navigation}) {
 	}
 	return (
 		<MainLayout>
-			<View style={styles.container}>
+			<View>
 				<LineChart.Provider data={data}>
 					{/* Header */}
 					{renderWalletInfoSection()}
@@ -112,19 +146,20 @@ export default function Home({navigation}) {
 					</View>
 					{/*  Top Cryptocurrency */}
 					<FlatList
-						data={cryptocurrencies}
+						data={coins}
 						renderItem={({item}) => <CoinItem marketCoin={item} />}
+						keyExtractor={(item, index) => String(index)}
+						onEndReached={() => fetchCoins(coins.length / 50 + 1)}
+						refreshControl={
+							<RefreshControl
+								refrehing={loading}
+								tintColor="#FF502F"
+								onRefresh={refetchCoins}
+							/>
+						}
 					/>
 				</LineChart.Provider>
 			</View>
 		</MainLayout>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#EBEFD0",
-		paddingTop: 50,
-	},
-});
