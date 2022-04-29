@@ -10,6 +10,8 @@ import {COLORS} from "./constants";
 import WatchlistProvider from "./Contexts/WatchlistContext";
 import Tabs from "./navigation/tabs";
 import {StatusBar} from "expo-status-bar";
+import AddNewAsset from "./screens/AddNewAsset";
+import {backgroundColor} from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const Stack = createStackNavigator();
 
@@ -30,12 +32,29 @@ const App = () => {
 					<Stack.Navigator
 						screenOptions={{
 							headerShown: false,
-							...TransitionPresets.ModalPresentationIOS,
 						}}
 						initialRouteName={"MainLayout"}
 					>
 						<Stack.Screen name="MainLayout" component={Tabs} />
-						<Stack.Screen name="Details" component={CoinDetails} />
+						<Stack.Screen
+							name="Details"
+							component={CoinDetails}
+							options={{headerShown: false}}
+						/>
+						<Stack.Screen
+							name="AddNewAsset"
+							component={AddNewAsset}
+							options={{
+								title: "Add New Asset",
+								headerStyle: {
+									backgroundColor: "#49BEB7",
+								},
+								headerTintColor: "#EBEFD0",
+								headerTitleStyle: {
+									fontWeight: "bold",
+								},
+							}}
+						/>
 					</Stack.Navigator>
 				</WatchlistProvider>
 			</NavigationContainer>
