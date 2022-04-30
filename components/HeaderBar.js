@@ -11,7 +11,8 @@ const HeaderBar = ({title}) => {
 		<View
 			style={{
 				paddingHorizontal: SIZES.radius,
-				marginVertical: 50,
+				marginTop: 50,
+				marginBottom: 25,
 				flexDirection: "row",
 				justifyContent: "space-end",
 				alignItems: "center",
