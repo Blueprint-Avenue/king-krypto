@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity, Image, Switch} from "react-native";
 import React from "react";
-import {FONTS, COLORS, SIZES, icons} from "../constants";
+import {COLORS, SIZES, icons} from "../constants";
 
 export default function Settings({title, value, type, onPress}) {
 	if (type == "button") {
@@ -13,7 +13,9 @@ export default function Settings({title, value, type, onPress}) {
 				}}
 				onPress={onPress}
 			>
-				<Text style={{flex: 1, color: COLORS.white, ...FONTS.h3}}>{title}</Text>
+				<Text style={{flex: 1, color: COLORS.white, fontSize: 18}}>
+					{title}
+				</Text>
 
 				<View
 					style={{
@@ -25,7 +27,7 @@ export default function Settings({title, value, type, onPress}) {
 						style={{
 							marginRight: SIZES.radius,
 							color: COLORS.lightGray3,
-							...FONTS.h3,
+							fontSize: 18,
 						}}
 					>
 						{value}
@@ -50,7 +52,9 @@ export default function Settings({title, value, type, onPress}) {
 					alignItems: "center",
 				}}
 			>
-				<Text style={{flex: 1, color: COLORS.white, ...FONTS.h3}}>{title}</Text>
+				<Text style={{flex: 1, color: COLORS.white, fontSize: 18}}>
+					{title}
+				</Text>
 				<Switch
 					trackColor={{false: COLORS.white, true: COLORS.primary}}
 					value={value}

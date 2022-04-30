@@ -1,7 +1,7 @@
 import React from "react";
 import {View, Text, Platform} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
-import {COLORS, FONTS, SIZES} from "../constants";
+import {COLORS, SIZES} from "../constants";
 import {useNavigation} from "@react-navigation/native";
 
 const HeaderBar = ({title}) => {

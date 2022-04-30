@@ -1,6 +1,6 @@
 import {View, Text} from "react-native";
 import React from "react";
-import {FONTS, COLORS, SIZES} from "../constants";
+import {COLORS, SIZES} from "../constants";
 
 export default function SectionTitle({title}) {
 	return (
@@ -12,7 +12,7 @@ export default function SectionTitle({title}) {
 			<Text
 				style={{
 					color: COLORS.lightGray3,
-					...FONTS.h4,
+					fontSize: 16,
 				}}
 			>
 				{title}

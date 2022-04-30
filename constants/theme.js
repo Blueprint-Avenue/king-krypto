@@ -1,5 +1,5 @@
-import { Dimensions } from "react-native";
-const { width, height } = Dimensions.get("window");
+import {Dimensions} from "react-native";
+const {width, height} = Dimensions.get("window");
 
 export const COLORS = {
 	primary: "#FF502F",
@@ -44,12 +44,12 @@ export const SIZES = {
 	height,
 };
 export const FONTS = {
-	largeTitle: { fontFamily: "Roboto-Black", fontSize: SIZES.largeTitle },
-	h1: { fontFamily: "Roboto-Black", fontSize: SIZES.h1, lineHeight: 36 },
-	h2: { fontFamily: "Roboto-Bold", fontSize: SIZES.h2, lineHeight: 30 },
-	h3: { fontFamily: "Roboto-Bold", fontSize: SIZES.h3, lineHeight: 22 },
-	h4: { fontFamily: "Roboto-Bold", fontSize: SIZES.h4, lineHeight: 22 },
-	h5: { fontFamily: "Roboto-Bold", fontSize: SIZES.h5, lineHeight: 22 },
+	largeTitle: {fontFamily: "Roboto-Black", fontSize: SIZES.largeTitle},
+	h1: {fontFamily: "Roboto-Black", fontSize: SIZES.h1, lineHeight: 36},
+	h2: {fontFamily: "Roboto-Bold", fontSize: SIZES.h2, lineHeight: 30},
+	h3: {fontFamily: "Roboto-Bold", fontSize: SIZES.h3, lineHeight: 22},
+	h4: {fontFamily: "Roboto-Bold", fontSize: SIZES.h4, lineHeight: 22},
+	h5: {fontFamily: "Roboto-Bold", fontSize: SIZES.h5, lineHeight: 22},
 	body1: {
 		fontFamily: "Roboto-Regular",
 		fontSize: SIZES.body1,
@@ -77,6 +77,6 @@ export const FONTS = {
 	},
 };
 
-const appTheme = { COLORS, SIZES, FONTS };
+const appTheme = {COLORS, SIZES, FONTS};
 
 export default appTheme;

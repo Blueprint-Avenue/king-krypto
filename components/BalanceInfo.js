@@ -1,6 +1,6 @@
 import {View, Text, Image} from "react-native";
 import React from "react";
-import {SIZES, COLORS, FONTS, icons} from "../constants";
+import {SIZES, COLORS, icons} from "../constants";
 
 export default function BalanceInfo({title, containerStyle}) {
 	return (
@@ -9,7 +9,7 @@ export default function BalanceInfo({title, containerStyle}) {
 			<Text
 				style={{
 					color: COLORS.black2,
-					...FONTS.h3,
+					fontSize: 18,
 					marginTop: 40,
 				}}
 			>
@@ -25,7 +25,7 @@ export default function BalanceInfo({title, containerStyle}) {
 				<Text
 					style={{
 						color: COLORS.white,
-						...FONTS.h3,
+						fontSize: 18,
 					}}
 				>
 					$
@@ -33,7 +33,7 @@ export default function BalanceInfo({title, containerStyle}) {
 				<Text
 					style={{
 						color: COLORS.white,
-						...FONTS.h2,
+						fontSize: 24,
 
 						marginLeft: SIZES.base,
 					}}
@@ -43,7 +43,7 @@ export default function BalanceInfo({title, containerStyle}) {
 				<Text
 					style={{
 						color: COLORS.white,
-						...FONTS.h3,
+						fontSize: 18,
 					}}
 				>
 					USD
@@ -71,7 +71,7 @@ export default function BalanceInfo({title, containerStyle}) {
 						marginLeft: SIZES.base,
 						alignSelf: "flex-end",
 						color: COLORS.Green,
-						...FONTS.h4,
+						fontSize: 16,
 					}}
 				>
 					1000.00%
@@ -81,7 +81,7 @@ export default function BalanceInfo({title, containerStyle}) {
 						marginLeft: SIZES.radius,
 						alignSelf: "flex-end",
 						color: COLORS.white,
-						...FONTS.h5,
+						fontSize: 14,
 					}}
 				>
 					7d change

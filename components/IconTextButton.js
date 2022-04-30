@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity, Image} from "react-native";
 import React from "react";
-import {COLORS, FONTS, SIZES} from "../constants";
+import {COLORS, SIZES} from "../constants";
 
 export default function IconTextButton({label, icon, containerStyle, onPress}) {
 	return (
@@ -29,7 +29,7 @@ export default function IconTextButton({label, icon, containerStyle, onPress}) {
 			<Text
 				style={{
 					marginLeft: SIZES.base,
-					...FONTS.h3,
+					fontSize: 18,
 					color: COLORS.secondary,
 				}}
 			>
