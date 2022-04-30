@@ -79,20 +79,6 @@ const CoinDetails = () => {
 			value: 33215.25,
 		},
 	];
-	// map thorugh the price
-	// points:prices.map((price) =>({x:price[0], y:[1]}))
-
-	// Changes the price
-	// const formatCurrency = (value) => {
-	// only if the value is empty
-	//     "worklet";
-	//     if(value === ''){
-	//         return `${current_price.usd.toFixed(2)}`
-	// //     }
-	//     return 1${parseFloat(value).toFixed(2)}
-	// }
-
-	// const chartColor = current_price.usd > [0][1] ? "#FF502F" : "#32DBC6";
 
 	const changeCoinValue = (value) => {
 		setCoinValue(value);

@@ -3,9 +3,15 @@ import React from "react";
 import {AntDesign} from "@expo/vector-icons";
 import PortfolioAssetItem from "./PortfolioAssetItem";
 import {useNavigation} from "@react-navigation/native";
+import {useRecoilValue, useRecoilState} from "recoil";
+import {allPortfolioAssets} from "../atoms/PortfolioAssets";
 
 export default function PortfolioAssets() {
 	const navigation = useNavigation();
+
+	const [assets, setAssets] = useRecoilState(allPortfolioAssets);
+
+	console.log(assets);
 
 	return (
 		<View>

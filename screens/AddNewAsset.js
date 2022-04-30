@@ -2,10 +2,11 @@ import {View, Text, TextInput, Pressable} from "react-native";
 import React, {useState} from "react";
 import HeaderBar from "../components/HeaderBar";
 import SearchableDropdown from "react-native-searchable-dropdown";
+import {useNavigation} from "@react-navigation/native";
 
 export default function AddNewAsset() {
 	const [boughtAssetQuantity, setBoughtAssetQuantity] = useState("");
-
+	const navigation = useNavigation();
 	return (
 		<View style={{flex: 1}}>
 			{/* Custom Header */}

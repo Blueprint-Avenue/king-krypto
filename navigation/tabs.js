@@ -5,7 +5,7 @@ import {COLORS, icons} from "../constants";
 import {Home, Portfolio, Market, Profile} from "../screens/Main";
 import {TabIcon} from "../components";
 import {connect} from "react-redux";
-import {setTradeModalVisibility} from "../stores/tab/tabActions";
+import {setTradeModalVisibility} from "../redux/tab/tabActions";
 
 const Tab = createBottomTabNavigator();
 
