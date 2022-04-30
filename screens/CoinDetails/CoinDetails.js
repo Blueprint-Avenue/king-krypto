@@ -63,20 +63,40 @@ const CoinDetails = () => {
 
 	const data = [
 		{
-			timestamp: 1625945400000,
-			value: 33575.25,
+			timestamp: 1638410441521,
+			value: 47214.08,
 		},
 		{
-			timestamp: 1625946300000,
-			value: 0,
+			timestamp: 1638399794129,
+			value: 57124.86,
 		},
 		{
-			timestamp: 1625947200000,
-			value: 15000,
+			timestamp: 1638403476369,
+			value: 57169.37,
 		},
 		{
-			timestamp: 1625948100000,
-			value: 33215.25,
+			timestamp: 1638410441521,
+			value: 47214.08,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 57214.08,
+		},
+		{
+			timestamp: 1638403476369,
+			value: 38497.37,
+		},
+		{
+			timestamp: 1638407244512,
+			value: 46916.55,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 47214.08,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 60000.08,
 		},
 	];
 

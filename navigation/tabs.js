@@ -118,7 +118,7 @@ const Tabs = ({setTradeModalVisibility, isTradeModalVisible}) => {
 								<TabIcon
 									focused={focused}
 									icon={icons.market}
-									label="Watchlist"
+									label="Exchanges"
 								/>
 							);
 						}

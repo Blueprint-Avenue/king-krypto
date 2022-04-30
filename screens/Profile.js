@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import {MainLayout} from "./Main";
 import HeaderBar from "../components/HeaderBar";
-import {FONTS, COLORS, SIZES, dummyData, icons} from "../constants";
+import {COLORS, SIZES, dummyData, icons} from "../constants";
 import SectionTitle from "../components/SectionTitle";
 import Setting from "../components/Settings";
 
@@ -49,12 +49,12 @@ const Profile = () => {
 							<Text
 								style={{
 									color: COLORS.white,
-									...FONTS.h3,
+									fontSize: 16,
 								}}
 							>
 								{dummyData.profile.email}
 							</Text>
-							<Text style={{color: COLORS.lightGray3, ...FONTS.h3}}>
+							<Text style={{color: COLORS.lightGray3, fontSize: 16}}>
 								ID: {dummyData.profile.id}
 							</Text>
 						</View>
@@ -77,7 +77,7 @@ const Profile = () => {
 									marginLeft: SIZES.base,
 
 									color: COLORS.lightGray3,
-									...FONTS.body4,
+									fontSize: 13,
 								}}
 							>
 								Verified

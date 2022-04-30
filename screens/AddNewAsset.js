@@ -1,12 +1,74 @@
 import {View, Text, TextInput, Pressable} from "react-native";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import HeaderBar from "../components/HeaderBar";
 import SearchableDropdown from "react-native-searchable-dropdown";
 import {useNavigation} from "@react-navigation/native";
+import {useRecoilState} from "recoil";
+import {allPortfolioBoughtAssetsInStorage} from "../atoms/PortfolioAssets";
+import {getAllCoins, getDatailedCoinData} from "../server/axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function AddNewAsset() {
+	const [allCoins, setAllCoins] = useState([]);
 	const [boughtAssetQuantity, setBoughtAssetQuantity] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [selectedCoinId, setSelectedCoinId] = useState(null);
+	const [selectedCoin, setSelectedCoin] = useState(null);
+
+	const [assetsInStorage, setAssetsInStorage] = useRecoilState(
+		allPortfolioBoughtAssetsInStorage
+	);
+
 	const navigation = useNavigation();
+
+	const isQuatityEntered = () => boughtAssetQuantity === "";
+
+	const fetchAllCoins = async () => {
+		if (loading) {
+			return;
+		}
+		setLoading(true);
+		const allCoins = await getAllCoins();
+		setAllCoins(allCoins);
+		setLoading(false);
+	};
+
+	const fetchCoinInfo = async () => {
+		if (loading) {
+			return;
+		}
+		setLoading(true);
+		const coinInfo = await getDatailedCoinData(selectedCoinId);
+		setSelectedCoin(coinInfo);
+		setLoading(false);
+	};
+
+	useEffect(() => {
+		fetchAllCoins();
+	}, []);
+
+	useEffect(() => {
+		if (selectedCoinId) {
+			fetchCoinInfo();
+		}
+	}, [selectedCoinId]);
+
+	const onAddNewAsset = async () => {
+		const newAsset = {
+			id: selectedCoin.id,
+			name: selectedCoin.name,
+			image: selectedCoin.image.small,
+			ticker: selectedCoin.symbol.toUpperCase(),
+			quantityBought: parseFloat(boughtAssetQuantity),
+			priceBought: selectedCoin.market_data.current_price.usd,
+		};
+		const newAssets = [...assetsInStorage, newAsset];
+		const jsonValue = JSON.stringify(newAssets);
+		await AsyncStorage.setItem("@portfolio_coins", jsonValue);
+		setAssetsInStorage(newAssets);
+		navigation.goBack();
+	};
+
 	return (
 		<View style={{flex: 1}}>
 			{/* Custom Header */}
@@ -14,8 +76,8 @@ export default function AddNewAsset() {
 
 			{/* Assets */}
 			<SearchableDropdown
-				items={[]}
-				onItemSelect={(item) => console.log(item)}
+				items={allCoins}
+				onItemSelect={(item) => setSelectedCoinId(item.id)}
 				containerStyle={{
 					width: "100%",
 					paddingHorizontal: 10,
@@ -31,7 +93,7 @@ export default function AddNewAsset() {
 				}}
 				itemTextStyle={{color: "#EBEFD0"}}
 				resetValue={false}
-				placeholder={"Select a coin..."}
+				placeholder={selectedCoinId || "Select a coin..."}
 				placeholderTextColor="#32DBC6"
 				textInputProps={{
 					underLineColorAndroid: "transparent",
@@ -45,53 +107,64 @@ export default function AddNewAsset() {
 					},
 				}}
 			/>
-			<View style={{alignItems: "center", marginTop: 50}}>
-				<View style={{flexDirection: "row"}}>
-					<TextInput
-						style={{color: "#49BEB7", fontSize: 90}}
-						value={boughtAssetQuantity}
-						placeholder="0"
-						keyBoardType="numeric"
-						onChangeText={setBoughtAssetQuantity}
-					/>
-					<Text
+			{selectedCoin && (
+				<>
+					<View style={{alignItems: "center", marginTop: 50}}>
+						<View style={{flexDirection: "row"}}>
+							<TextInput
+								style={{color: "#49BEB7", fontSize: 90}}
+								value={boughtAssetQuantity}
+								placeholder="0"
+								keyboardType="numeric"
+								onChangeText={setBoughtAssetQuantity}
+							/>
+							<Text
+								style={{
+									color: "#49BEB7",
+									fontWeight: "700",
+									fontSize: 20,
+									marginTop: 25,
+									marginLeft: 5,
+								}}
+							>
+								{selectedCoin.symbol.toUpperCase()}
+							</Text>
+						</View>
+						<Text
+							style={{
+								color: "#49BEB7",
+								fontWeight: "600",
+								fontSize: 17,
+								letterSpacing: 0.5,
+							}}
+						>
+							${selectedCoin.market_data.current_price.usd} per coin
+						</Text>
+					</View>
+					<Pressable
 						style={{
-							color: "#49BEB7",
-							fontWeight: "700",
-							fontSize: 20,
-							marginTop: 25,
-							marginLeft: 5,
+							backgroundColor: isQuatityEntered() ? "#303030" : "#FF502F",
+							padding: 10,
+							alignItems: "center",
+							marginVertical: 105,
+							marginHorizontal: 15,
+							borderRadius: 5,
 						}}
+						onPress={onAddNewAsset}
+						disabled={isQuatityEntered}
 					>
-						BTC
-					</Text>
-				</View>
-				<Text
-					style={{
-						color: "#49BEB7",
-						fontWeight: "600",
-						fontSize: 17,
-						letterSpacing: 0.5,
-					}}
-				>
-					$15,000 Per Coin
-				</Text>
-			</View>
-			<Pressable
-				style={{
-					backgroundColor: "#FF502F",
-					padding: 10,
-					alignItems: "center",
-					marginVertical: 105,
-					marginHorizontal: 15,
-					borderRadius: 5,
-				}}
-				onPress={() => navigation.navigate("AddNewAsset")}
-			>
-				<Text style={{fontSize: 17, color: "#EBEFD0", fontWeight: "600"}}>
-					Add New Asset
-				</Text>
-			</Pressable>
+						<Text
+							style={{
+								fontSize: 17,
+								color: isQuatityEntered() ? "grey" : "#EBEFD0",
+								fontWeight: "600",
+							}}
+						>
+							Add New Asset
+						</Text>
+					</Pressable>
+				</>
+			)}
 		</View>
 	);
 }

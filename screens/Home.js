@@ -10,7 +10,7 @@ import React, {useEffect, useState} from "react";
 import {MainLayout} from "./Main";
 import CoinItem from "../components/CoinItem/CoinItem";
 import cryptocurrencies from "../assets/data/cryptocurrencies.json";
-import {SIZES, COLORS, FONTS, dummyData, icons} from "../constants";
+import {SIZES, COLORS, dummyData, icons} from "../constants";
 import {BalanceInfo} from "../components";
 import {IconTextButton} from "../components";
 import {LineChart} from "react-native-wagmi-charts";
@@ -47,20 +47,44 @@ export default function Home({navigation}) {
 	const screenWidth = Dimensions.get("window").width;
 	const data = [
 		{
-			timestamp: 1625945400000,
-			value: 33575.25,
+			timestamp: 1638410441521,
+			value: 47214.08,
 		},
 		{
-			timestamp: 1625946300000,
-			value: 0,
+			timestamp: 1638399794129,
+			value: 57124.86,
 		},
 		{
-			timestamp: 1625947200000,
-			value: 15000,
+			timestamp: 1638399794129,
+			value: 0.86,
 		},
 		{
-			timestamp: 1625948100000,
-			value: 33215.25,
+			timestamp: 1638403476369,
+			value: 57169.37,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 47214.08,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 57214.08,
+		},
+		{
+			timestamp: 1638403476369,
+			value: 38497.37,
+		},
+		{
+			timestamp: 1638407244512,
+			value: 46916.55,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 47214.08,
+		},
+		{
+			timestamp: 1638410441521,
+			value: 60000.08,
 		},
 	];
 
