@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import {MainLayout} from "./Main";
 import HeaderBar from "../components/HeaderBar";
-import {COLORS, SIZES, dummyData, icons} from "../constants";
+import {COLORS, SIZES, icons} from "../constants";
 import SectionTitle from "../components/SectionTitle";
 import Setting from "../components/Settings";
 
@@ -52,10 +52,10 @@ const Profile = () => {
 									fontSize: 16,
 								}}
 							>
-								{dummyData.profile.email}
+								macMoney90@gmail.com
 							</Text>
 							<Text style={{color: COLORS.lightGray3, fontSize: 16}}>
-								ID: {dummyData.profile.id}
+								ID: 777777
 							</Text>
 						</View>
 						{/* Status */}

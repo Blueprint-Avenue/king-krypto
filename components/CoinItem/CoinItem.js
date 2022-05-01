@@ -19,17 +19,17 @@ export default function CoinItem({marketCoin}) {
 	const navigation = useNavigation();
 
 	const prettierMarketCap = (marketCap) => {
-		if (marketCap > 1_000_000_000_000) {
-			return `${Math.floor(marketCap / 1_000_000_000_000)}T`;
+		if (marketCap > 1e12) {
+			return `${Math.floor(marketCap / 1e12)}T`;
 		}
-		if (marketCap > 1_000_000_000) {
-			return `${Math.floor(marketCap / 1_000_000_000)}B`;
+		if (marketCap > 1e9) {
+			return `${Math.floor(marketCap / 1e9)}B`;
 		}
-		if (marketCap > 1_000_000) {
-			return `${Math.floor(marketCap / 1_000_000)}M`;
+		if (marketCap > 1e6) {
+			return `${Math.floor(marketCap / 1e6)}M`;
 		}
-		if (marketCap > 1_000) {
-			return `${Math.floor(marketCap / 1_000)}T`;
+		if (marketCap > 1e3) {
+			return `${Math.floor(marketCap / 1e3)}T`;
 		}
 		return marketCap;
 	};
